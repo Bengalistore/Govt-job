@@ -4,9 +4,9 @@ import Job from "@/models/Job";
 import slugify from "slugify";
 import { verifyAdminToken } from "@/lib/auth";
 
-function isAdmin(req) {
+async function isAdmin(req) {
   const token = req.cookies.get("admin_token")?.value;
-  return token && verifyAdminToken(token);
+  return token && (await verifyAdminToken(token));
 }
 
 export async function GET(_req, { params }) {
@@ -17,7 +17,7 @@ export async function GET(_req, { params }) {
 }
 
 export async function PUT(req, { params }) {
-  if (!isAdmin(req)) {
+  if (!(await isAdmin(req))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   await connectDB();
@@ -37,7 +37,7 @@ export async function PUT(req, { params }) {
 }
 
 export async function DELETE(req, { params }) {
-  if (!isAdmin(req)) {
+  if (!(await isAdmin(req))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   await connectDB();
