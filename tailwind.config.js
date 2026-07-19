@@ -28,9 +28,9 @@ module.exports = {
         danger: "#C4432B"
       },
       fontFamily: {
-        display: ["Sora", "Noto Sans Bengali", "sans-serif"],
-        body: ["Inter", "Noto Sans Bengali", "sans-serif"],
-        mono: ["IBM Plex Mono", "monospace"]
+        display: ["var(--font-display)", "var(--font-bengali)", "sans-serif"],
+        body: ["var(--font-body)", "var(--font-bengali)", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"]
       },
       boxShadow: {
         card: "0 1px 2px rgba(11,61,145,0.06), 0 1px 0 rgba(11,61,145,0.04)",
