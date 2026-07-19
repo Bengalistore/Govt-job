@@ -7,10 +7,12 @@ import Link from "next/link";
 
 export const metadata = {
   title: "সব চাকরি খুঁজুন",
-  description: "Category, state, district, job type ও education অনুযায়ী চাকরি ফিল্টার করুন।"
+  description: "Category, state, district, job type and education অনুযায়ী চাকরি ফিল্টার করুন।"
 };
 
 const PAGE_SIZE = 12;
+
+export const revalidate = 60; // cache each filter combination for 1 minute
 
 async function getJobs(searchParams) {
   await connectDB();
