@@ -4,9 +4,9 @@ import Job from "@/models/Job";
 import slugify from "slugify";
 import { verifyAdminToken } from "@/lib/auth";
 
-function isAdmin(req) {
+async function isAdmin(req) {
   const token = req.cookies.get("admin_token")?.value;
-  return token && verifyAdminToken(token);
+  return token && (await verifyAdminToken(token));
 }
 
 // GET /api/jobs?category=&state=&district=&jobType=&education=&q=&expiringSoon=true&limit=&page=
@@ -54,7 +54,7 @@ export async function GET(req) {
 
 // POST /api/jobs  (admin only)
 export async function POST(req) {
-  if (!isAdmin(req)) {
+  if (!(await isAdmin(req))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
