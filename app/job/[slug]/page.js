@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
+export const revalidate = 300; // cache each job page for 5 minutes
+
 async function getJob(slug) {
   await connectDB();
   const job = await Job.findOne({ slug, status: "published" }).lean();

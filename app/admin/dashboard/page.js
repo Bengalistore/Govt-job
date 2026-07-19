@@ -4,6 +4,10 @@ import Link from "next/link";
 import DashboardTable from "./DashboardTable";
 import LogoutButton from "@/components/admin/LogoutButton";
 
+// Admin data must always be fresh — never statically cache this page.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function DashboardPage() {
   await connectDB();
   const jobs = await Job.find({}).sort({ createdAt: -1 }).lean();
