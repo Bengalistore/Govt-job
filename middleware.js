@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { verifyAdminToken } from "./lib/auth";
 
-export function middleware(req) {
+export async function middleware(req) {
   const token = req.cookies.get("admin_token")?.value;
-  const isValid = token && verifyAdminToken(token);
+  const isValid = token && (await verifyAdminToken(token));
 
   if (!isValid) {
     const loginUrl = new URL("/admin/login", req.url);
