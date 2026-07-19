@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap");
+
+:root {
+  --navy: #0b3d91;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f7f8fa;
+  color: #1a1d29;
+  font-family: "Inter", "Noto Sans Bengali", sans-serif;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: "Sora", "Noto Sans Bengali", sans-serif;
+}
+
+.font-mono-data {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* Visible keyboard focus for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #0b3d91;
+  outline-offset: 2px;
+}
+
+/* Signature element: a job card styled like an official application ticket,
+   with a perforated stub on the right showing the countdown / status. */
+.ticket-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid #e4e7ec;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.ticket-card:hover {
+  box-shadow: 0 8px 24px rgba(11, 61, 145, 0.1);
+  transform: translateY(-2px);
+}
+
+.ticket-stub {
+  position: relative;
+  border-left: 1px dashed #cbdbf2;
+}
+
+.ticket-stub::before,
+.ticket-stub::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #f7f8fa;
+  border: 1px solid #e4e7ec;
+}
+
+.ticket-stub::before {
+  top: -6px;
+}
+
+.ticket-stub::after {
+  bottom: -6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
